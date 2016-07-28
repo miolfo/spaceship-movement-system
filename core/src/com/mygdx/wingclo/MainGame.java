@@ -8,14 +8,21 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.wingclo.GUI.ShipControls;
 
 public class MainGame extends ApplicationAdapter {
-	SpriteBatch batch;
-	Ship ship;
+
+	private static SpriteBatch batch;
+	private Ship ship;
+	private ShipControls shipControls;
 
 	private Sprite shipSprite;
 
 	private Vector2 position;
+
+	public static SpriteBatch spriteBatchInstance(){
+		return batch;
+	}
 
 	@Override
 	public void create () {
@@ -24,14 +31,16 @@ public class MainGame extends ApplicationAdapter {
 		position = new Vector2(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
 		ship = new Ship(position, shipSprite);
 		ship.setGravityAffected(true);
+		shipControls = new ShipControls(ship);
+
 	}
 
 	@Override
 	public void render () {
 		handleMovement();
-
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		shipControls.render();
 		batch.begin();
 		ship.getShipSprite().draw(batch);
 		batch.end();
