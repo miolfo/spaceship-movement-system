@@ -83,6 +83,14 @@ public class Ship {
         position.x += movement.x * deltaTime;
         position.y += movement.y * deltaTime;
 
+        //Stop the ship from falling out of the camera.
+        //Also stop horizontal movement for smoother look
+        if(position.y < 0){
+            position.y = 0;
+            movement.y = 0;
+            movement.x = 0;
+        }
+
         shipSprite.setPosition(position.x, position.y);
     }
 
