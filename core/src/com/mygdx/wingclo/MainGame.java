@@ -52,23 +52,6 @@ public class MainGame extends ApplicationAdapter {
 	}
 
 	public void handleMovement(){
-		float deltaTime = Gdx.graphics.getDeltaTime();
-		if(Gdx.input.isKeyPressed(Input.Keys.D)){
-			ship.turn(deltaTime, -1);
-		}
 
-		if(Gdx.input.isKeyPressed(Input.Keys.A)){
-			ship.turn(deltaTime, 1);
-		}
-
-		//Add to the velocity if W is pressed
-		if(Gdx.input.isKeyPressed(Input.Keys.W)){
-			ship.accelerate(deltaTime);
-		}
-
-		//If not, decelerate
-		else{
-			ship.decelerate(deltaTime);
-		}
 	}
 }
